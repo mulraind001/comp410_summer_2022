@@ -3,7 +3,8 @@ import re
 
 
 def show_aggie_pride():
-    slogan_list = ['Aggie Pride - Worldwide']
+    slogan_list = ['Aggie Pride - Worldwide',
+                   'Aggies Do!']
 
     return slogan_list
 
