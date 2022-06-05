@@ -52,6 +52,12 @@ class ScanTests(unittest.TestCase):
         # Test to make sure scan_files returns the expected results
         expected_result = ['files/november_statement.pdf',
                            'files/Documents/Statements/Retirement/ss_info.pdf']
+
+        # Make expected_result os safe by checking the seperator
+        if os.sep != '/':
+            for i in range(len(expected_result)):
+                expected_result[i] = expected_result[i].replace('/', os.sep)
+
         self.assertEqual(scan_files(), expected_result)
 
 
