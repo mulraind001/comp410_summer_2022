@@ -2,7 +2,7 @@ import unittest
 import pdfplumber
 import os
 import re
-from scan import show_aggie_pride
+from scan import show_aggie_pride, scan_files
 
 
 class ScanTests(unittest.TestCase):
@@ -45,6 +45,12 @@ class ScanTests(unittest.TestCase):
                             text = p.extract_text()
                             # check for the ssn
                             self.assertRegexpMatches(text, r'\d{3}-\d{2}-\d{4}')
+
+    def test_scan_files(self):
+        # Test to make sure scan_files returns the expected results
+        expected_result = ['files/november_statement.pdf',
+                           'files/Documents/Statements/Retirement/ss_info.pdf']
+        self.assertEqual(scan_files(), expected_result)
 
 
 if __name__ == '__main__':
