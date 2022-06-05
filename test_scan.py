@@ -31,6 +31,21 @@ class ScanTests(unittest.TestCase):
                 # Regex match on the account number
                 self.assertRegexpMatches(text, r'\d+-\d+')
 
+    def test_ssn(self):
+        # Walk all files starting from the files directory
+        for root, dirs, files in os.walk('files'):
+            for name in files:
+                # Look for files that should have ssn in them
+                if name == 'ss_info.pdf':
+                    # open the file
+                    with pdfplumber.open(os.path.join(root, name)) as pdf:
+                        # loop through each page in the pdf
+                        for p in pdf.pages:
+                            # extract the text as a str
+                            text = p.extract_text()
+                            # check for the ssn
+                            self.assertRegexpMatches(text, r'\d{3}-\d{2}-\d{4}')
+
 
 if __name__ == '__main__':
     unittest.main()
