@@ -29,7 +29,8 @@ class ScanTests(unittest.TestCase):
                 self.assertIn('Account Number: 3942-29992', text)
 
                 # Regex match on the account number
-                self.assertRegexpMatches(text, r'\d+-\d+')
+                m = re.search(r'\d+-\d+', text)
+                self.assertTrue(m)
 
     def test_ssn(self):
         # Walk all files starting from the files directory
@@ -44,7 +45,8 @@ class ScanTests(unittest.TestCase):
                             # extract the text as a str
                             text = p.extract_text()
                             # check for the ssn
-                            self.assertRegexpMatches(text, r'\d{3}-\d{2}-\d{4}')
+                            m = re.search(r'\d{3}-\d{2}-\d{4}', text)
+                            self.assertTrue(m)
 
     def test_scan_files(self):
         # Test to make sure scan_files returns the expected results
