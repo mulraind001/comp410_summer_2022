@@ -4,6 +4,7 @@ import re
 
 def show_aggie_pride():
     slogan_list = ['Aggie Pride - Worldwide',
+                    'Aggie Pride!',
                     'And That\'s On My 1891']
 
     return slogan_list
