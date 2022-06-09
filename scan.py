@@ -11,7 +11,6 @@ def show_aggie_pride():
                    'Aggies Do!',
                    'My Aggie Pricde',
                    'Aggies engineering']
-
     return slogan_list
 
 
