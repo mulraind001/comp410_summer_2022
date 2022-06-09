@@ -7,6 +7,7 @@ def show_aggie_pride():
                     'Aggie Pride!',
                     'And That\'s On My 1891',
                     'Aggies ❤️ engineering',
+                   "Aggies code FR",
                   ]
 
     return slogan_list
