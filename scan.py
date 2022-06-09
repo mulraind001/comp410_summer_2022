@@ -12,7 +12,7 @@ def show_aggie_pride():
                     'And That\'s On My 1891',
                     'Aggies ❤️ engineering',
 		                 'Aggies Do',
-                    'Aggies Do!']
+                    'Aggies Do!', 'Aggies Get it Done!']
 
 
 
