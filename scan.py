@@ -7,10 +7,11 @@ def show_aggie_pride():
                     'Aggie Pride!',
                     'And That\'s On My 1891',
                     'Aggies ❤️ engineering',
+                   'Aggies Do!',
+                   'I like my Aggie Pride!'
                   ]
 
     return slogan_list
 
 
-if __name__ == '__main__':
-    print(show_aggie_pride())
+
