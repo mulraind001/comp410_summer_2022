@@ -11,6 +11,14 @@ def show_aggie_pride():
                     'Aggies ❤️ engineering', 'Aggies Do!', 'Aggies Get it Done!']
 
 
+
     return slogan_list  
+
+    #Added Code
+    slogan_list.append('NCAT')
+
+    return slogan_list
+  
+  
 if __name__ == '__main__':
     print(show_aggie_pride())
