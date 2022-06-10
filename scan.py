@@ -19,7 +19,7 @@ def show_aggie_pride():
                    'Aggies Do',
                    'Aggies Do!',
                    'GO AGGIES']
- main
+ 
     return slogan_list
 
 
