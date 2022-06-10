@@ -23,6 +23,9 @@ def show_aggie_pride():
                    'Aggies Do!',
                    'GO AGGIES']
 
+    #Added Code
+    slogan_list.append('NCAT')
+
     return slogan_list
   
   
