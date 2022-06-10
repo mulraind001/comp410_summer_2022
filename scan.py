@@ -10,7 +10,8 @@ def show_aggie_pride():
                     'Aggies ❤️ engineering',
                     "Aggies code FR",
 		                'Aggies Do',
-                    'Aggies Do!']
+                    'Aggies Do!'
+                    'AGGIES VS EVERYBODY']
 
 
 
