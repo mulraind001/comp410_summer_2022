@@ -51,10 +51,10 @@ class ScanTests(unittest.TestCase):
 
     def test_scan_files(self):
         # Test to make sure scan_files returns the expected results
-        expected_result = ['files/november_statement.pdf',
-                           'files/Documents/twitter_info.docx',
-                           'files/Documents/Statements/Retirement/ss_info.pdf',
-                           'files/Downloads/address_book.xlsx']
+        expected_result = [r'files/november_statement.pdf',
+                           r'files/Documents/twitter_info.docx',
+                           r'files/Documents/Statements/Retirement/ss_info.pdf',
+                           r'files/Downloads/address_book.xlsx']
 
         # Make expected_result os safe by checking the seperator
         if os.sep != '/':
