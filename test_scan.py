@@ -51,17 +51,20 @@ class ScanTests(unittest.TestCase):
 
     def test_scan_files(self):
         # Test to make sure scan_files returns the expected results
-        expected_result = [r'files/november_statement.pdf',
-                           r'files/Documents/twitter_info.docx',
-                           r'files/Documents/Statements/Retirement/ss_info.pdf',
-                           r'files/Downloads/address_book.xlsx']
+        expected_result = ['files/november_statement.pdf',
+                           'files/Documents/twitter_info.docx',
+                           'files/Documents/Statements/Retirement/ss_info.pdf',
+                           'files/Downloads/address_book.xlsx']
 
         # Make expected_result os safe by checking the seperator
         if os.sep != '/':
             for i in range(len(expected_result)):
                 expected_result[i] = expected_result[i].replace('/', os.sep)
 
-        self.assertEqual(scan_files(), expected_result)
+        # Make sure all the expected files are actually found
+        scan = scan_files()
+        for f in expected_result:
+            self.assertIn(f, scan)
 
     def test_name_recognition(self):
         # python -m spacy download en_core_web_sm
