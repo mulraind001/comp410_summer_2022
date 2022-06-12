@@ -8,6 +8,7 @@ import spacy
 
 class ScanTests(unittest.TestCase):
     def test_aggie_pride(self):
+        # get the slogans
         slogans = show_aggie_pride()
 
         self.assertIn('Aggie Pride - Worldwide', slogans)
