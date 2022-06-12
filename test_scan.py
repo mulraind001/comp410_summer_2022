@@ -3,6 +3,7 @@ import pdfplumber
 import os
 import re
 from scan import show_aggie_pride, scan_files
+import spacy
 
 
 class ScanTests(unittest.TestCase):
@@ -61,6 +62,29 @@ class ScanTests(unittest.TestCase):
                 expected_result[i] = expected_result[i].replace('/', os.sep)
 
         self.assertEqual(scan_files(), expected_result)
+
+    def test_name_recognition(self):
+        # python -m spacy download en_core_web_sm
+        try:
+            nlp = spacy.load("en_core_web_sm")
+        except OSError:
+            from spacy.cli import download
+            download("en_core_web_sm")
+            nlp = spacy.load("en_core_web_sm")
+
+        # Create a sample string with a mix of things that look like they could be names
+        names_string = 'Name: John Jones\nAddress: 123 John W Mitchell Drive\nNorth Carolina\nHarsh Mupali'
+        doc = nlp(names_string)
+
+        # expected results
+        # Be careful with addresses that look like a name - they are often detected incorrectly
+        expected = {'John Jones': 'PERSON',
+                    '123': 'CARDINAL', 'John W Mitchell Drive': 'PERSON',
+                    'North Carolina': 'GPE',
+                    'Harsh Mupali': 'PERSON'}
+
+        for ent in doc.ents:
+            self.assertEqual(expected[ent.text], ent.label_)
 
 
 if __name__ == '__main__':
