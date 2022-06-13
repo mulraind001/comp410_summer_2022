@@ -4,7 +4,7 @@ import re
 
 def scan_files():
     # supported file types
-    supported_files = ['.docx', '.pdf', '.xlsx']
+    supported_files = ['.docx', '.pdf', '.xlsx', '.txt']
 
     # list of files found
     found_list = []

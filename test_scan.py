@@ -57,7 +57,8 @@ class ScanTests(unittest.TestCase):
         expected_result = ['files/november_statement.pdf',
                            'files/Documents/twitter_info.docx',
                            'files/Documents/Statements/Retirement/ss_info.pdf',
-                           'files/Downloads/address_book.xlsx']
+                           'files/Downloads/address_book.xlsx',
+                           'files/Downloads/address_book.txt']
 
         # Make expected_result os safe by checking the seperator
         if os.sep != '/':
@@ -129,6 +130,25 @@ class ScanTests(unittest.TestCase):
         self.assertIn('336-555-1212', phones)
         self.assertIn('919-555-1212', phones)
         self.assertIn('970-555-1212', phones)
+
+    def test_txt(self):
+        txt = 'files/Downloads/address_book.txt'
+
+        # Fix seperator for windows (or other platforms)
+        if os.sep != '/':
+            txt = txt.replace('/', os.sep)
+
+        names = []
+        with open(txt) as f:
+            for line in f.readlines():
+                m = re.search(r'([A-Z][a-z]+ [A-Z][a-z]+)', line)
+                if m:
+                    names.append(m.group(1))
+
+        # check to make sure we found all the names
+        self.assertIn('John Jones', names)
+        self.assertIn('James Johnson', names)
+        self.assertIn('Roger Jones', names)
 
 
 if __name__ == '__main__':
