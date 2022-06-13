@@ -5,6 +5,7 @@ import re
 from scan import show_aggie_pride, scan_files
 import spacy
 from docx import Document
+from openpyxl import load_workbook
 
 
 class ScanTests(unittest.TestCase):
@@ -104,6 +105,30 @@ class ScanTests(unittest.TestCase):
         for p in document.paragraphs:
             m = re.search(r'(@\w+)', p.text)
             self.assertEqual('@john_jones', m.group(1))
+
+    def test_xlsx(self):
+        xlsx = 'files/Downloads/address_book.xlsx'
+
+        # Fix seperator for windows (or other platforms)
+        if os.sep != '/':
+            xlsx = xlsx.replace('/', os.sep)
+
+        # load a workbook
+        wb = load_workbook(xlsx)
+        # scan through all the worksheets
+        phones = []
+        for ws in wb:
+            for row in ws.values:
+                for value in row:
+                    # Find phone numbers
+                    m = re.search(r'(\d{3}-\d{3}-\d{4})', value)
+                    if m:
+                        phones.append(m.group(1))
+
+        # check to make sure we found all the phone numbers
+        self.assertIn('336-555-1212', phones)
+        self.assertIn('919-555-1212', phones)
+        self.assertIn('970-555-1212', phones)
 
 
 if __name__ == '__main__':
