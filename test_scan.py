@@ -4,6 +4,7 @@ import os
 import re
 from scan import show_aggie_pride, scan_files
 import spacy
+from docx import Document
 
 
 class ScanTests(unittest.TestCase):
@@ -89,6 +90,20 @@ class ScanTests(unittest.TestCase):
 
         for ent in doc.ents:
             self.assertEqual(expected[ent.text], ent.label_)
+
+    def test_docx(self):
+        # test to make sure we can read a docx ok
+        doc = 'files/Documents/twitter_info.docx'
+
+        # Fix seperator for windows (or other platforms)
+        if os.sep != '/':
+            doc = doc.replace('/', os.sep)
+
+        # Read test document which contains a twitter handle
+        document = Document(doc)
+        for p in document.paragraphs:
+            m = re.search(r'(@\w+)', p.text)
+            self.assertEqual('@john_jones', m.group(1))
 
 
 if __name__ == '__main__':
