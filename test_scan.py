@@ -1,11 +1,6 @@
 import unittest
-import pdfplumber
 import os
-import re
-from scan import show_aggie_pride, scan_files
-import spacy
-from docx import Document
-from openpyxl import load_workbook
+from scan import show_aggie_pride, scan_files, get_file_text
 
 
 class ScanTests(unittest.TestCase):
@@ -14,43 +9,6 @@ class ScanTests(unittest.TestCase):
         slogans = show_aggie_pride()
 
         self.assertIn('Aggie Pride - Worldwide', slogans)
-
-    def test_pdf_parse(self):
-        # get a platform safe path to a test pdf file
-        pdf_file = os.path.join('files', 'november_statement.pdf')
-
-        # open the file
-        with pdfplumber.open(pdf_file) as pdf:
-            # loop through each page in the pdf
-            for p in pdf.pages:
-                # extract the text as a str
-                text = p.extract_text()
-
-                # Check for the name that should be in this PDF
-                self.assertIn('Name: John Smith', text)
-
-                # Check for the account number
-                self.assertIn('Account Number: 3942-29992', text)
-
-                # Regex match on the account number
-                m = re.search(r'\d+-\d+', text)
-                self.assertTrue(m)
-
-    def test_ssn(self):
-        # Walk all files starting from the files directory
-        for root, dirs, files in os.walk('files'):
-            for name in files:
-                # Look for files that should have ssn in them
-                if name == 'ss_info.pdf':
-                    # open the file
-                    with pdfplumber.open(os.path.join(root, name)) as pdf:
-                        # loop through each page in the pdf
-                        for p in pdf.pages:
-                            # extract the text as a str
-                            text = p.extract_text()
-                            # check for the ssn
-                            m = re.search(r'\d{3}-\d{2}-\d{4}', text)
-                            self.assertTrue(m)
 
     def test_scan_files(self):
         # Test to make sure scan_files returns the expected results
@@ -70,30 +28,29 @@ class ScanTests(unittest.TestCase):
         for f in expected_result:
             self.assertIn(f, scan)
 
-    def test_name_recognition(self):
-        # python -m spacy download en_core_web_sm
-        try:
-            nlp = spacy.load("en_core_web_sm")
-        except OSError:
-            from spacy.cli import download
-            download("en_core_web_sm")
-            nlp = spacy.load("en_core_web_sm")
+    def test_november_statement_pdf(self):
+        # get a platform safe path to a test pdf file
+        pdf_file = os.path.join('files', 'november_statement.pdf')
 
-        # Create a sample string with a mix of things that look like they could be names
-        names_string = 'Name: John Jones\nAddress: 123 John W Mitchell Drive\nNorth Carolina\nHarsh Mupali'
-        doc = nlp(names_string)
+        # get the text from this file
+        text = get_file_text(pdf_file)
 
-        # expected results
-        # Be careful with addresses that look like a name - they are often detected incorrectly
-        expected = {'John Jones': 'PERSON',
-                    '123': 'CARDINAL', 'John W Mitchell Drive': 'PERSON',
-                    'North Carolina': 'GPE',
-                    'Harsh Mupali': 'PERSON'}
+        self.assertIn('Name: John Smith', text)
 
-        for ent in doc.ents:
-            self.assertEqual(expected[ent.text], ent.label_)
+        # Check for the account number
+        self.assertIn('Account Number: 3942-29992', text)
 
-    def test_docx(self):
+    def test_ss_info_pdf(self):
+        # Create an OS safe path to ss_info.pdf
+        ss_file = os.sep.join(['files', 'Documents', 'Statements', 'Retirement', 'ss_info.pdf'])
+
+        # Get the text from the file
+        text = get_file_text(ss_file)
+
+        # Check for the ss number
+        self.assertIn('Number: 000-12-1234', text)
+
+    def test_twitter_info_docx(self):
         # test to make sure we can read a docx ok
         doc = 'files/Documents/twitter_info.docx'
 
@@ -102,53 +59,37 @@ class ScanTests(unittest.TestCase):
             doc = doc.replace('/', os.sep)
 
         # Read test document which contains a twitter handle
-        document = Document(doc)
-        for p in document.paragraphs:
-            m = re.search(r'(@\w+)', p.text)
-            self.assertEqual('@john_jones', m.group(1))
+        text = get_file_text(doc)
+        self.assertIn('My twitter handle is @john_jones but I’d like to keep this a secret', text)
 
-    def test_xlsx(self):
+    def test_address_book_xlsx(self):
         xlsx = 'files/Downloads/address_book.xlsx'
 
         # Fix seperator for windows (or other platforms)
         if os.sep != '/':
             xlsx = xlsx.replace('/', os.sep)
 
-        # load a workbook
-        wb = load_workbook(xlsx)
-        # scan through all the worksheets
-        phones = []
-        for ws in wb:
-            for row in ws.values:
-                for value in row:
-                    # Find phone numbers
-                    m = re.search(r'(\d{3}-\d{3}-\d{4})', value)
-                    if m:
-                        phones.append(m.group(1))
+        text = get_file_text(xlsx)
 
         # check to make sure we found all the phone numbers
-        self.assertIn('336-555-1212', phones)
-        self.assertIn('919-555-1212', phones)
-        self.assertIn('970-555-1212', phones)
+        self.assertIn('336-555-1212', text)
+        self.assertIn('919-555-1212', text)
+        self.assertIn('970-555-1212', text)
 
-    def test_txt(self):
+    def test_address_book_txt(self):
         txt = 'files/Downloads/address_book.txt'
 
         # Fix seperator for windows (or other platforms)
         if os.sep != '/':
             txt = txt.replace('/', os.sep)
 
-        names = []
-        with open(txt) as f:
-            for line in f.readlines():
-                m = re.search(r'([A-Z][a-z]+ [A-Z][a-z]+)', line)
-                if m:
-                    names.append(m.group(1))
+        # read the text file
+        text = get_file_text(txt)
 
         # check to make sure we found all the names
-        self.assertIn('John Jones', names)
-        self.assertIn('James Johnson', names)
-        self.assertIn('Roger Jones', names)
+        self.assertIn('John Jones,336-555-1212', text)
+        self.assertIn('James Johnson,919-555-1212', text)
+        self.assertIn('Roger Jones,970-555-1212', text)
 
 
 if __name__ == '__main__':
