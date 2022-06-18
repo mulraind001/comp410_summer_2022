@@ -3,19 +3,8 @@ import re
 
 
 def show_aggie_pride():
-
-    slogan_list = ['Aggie Pride - Worldwide', 
-                   'Aggies Do!',              
-                    'Aggie Pride!',
-                    'And That\'s On My 1891',
-                    'Aggies ❤️ engineering', 'Aggies Do!', 'Aggies Get it Done!']
-
-
-
-    return slogan_list  
-
-    #Added Code
-    slogan_list.append('NCAT')
+    slogan_list = ['Aggie Pride - Worldwide', 'Aggies Do!', 'Aggie Pride!', 'And That\'s On My 1891',
+                   'Aggies ❤️ engineering', 'Aggies Do!', 'Aggies Get it Done!', 'NCAT']
 
     return slogan_list
   
