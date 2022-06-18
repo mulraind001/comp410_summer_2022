@@ -1,5 +1,4 @@
 import os
-import re
 import pdfplumber
 from docx import Document
 from openpyxl import load_workbook
@@ -49,11 +48,10 @@ def get_file_text(file) -> list:
                 file_text.append(line.rstrip())
     else:
         raise RuntimeError('Unsupported file type: ' + ext)
-
     return file_text
 
 
-def scan_files():
+def scan_files() -> list:
     # list of files found
     found_list = []
 
@@ -69,7 +67,7 @@ def scan_files():
     return found_list
 
 
-def show_aggie_pride():
+def show_aggie_pride() -> list:
     slogan_list = ['Aggie Pride - Worldwide']
 
     return slogan_list

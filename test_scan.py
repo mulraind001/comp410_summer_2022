@@ -3,6 +3,7 @@ import os
 from scan import show_aggie_pride, scan_files, get_file_text
 
 
+# https://docs.python.org/3/library/unittest.html
 class ScanTests(unittest.TestCase):
     def test_aggie_pride(self):
         # get the slogans
@@ -27,6 +28,18 @@ class ScanTests(unittest.TestCase):
         scan = scan_files()
         for f in expected_result:
             self.assertIn(f, scan)
+
+    def test_get_file_text(self):
+        # Will rely on other tests to make sure all information in a file
+        # is being read correctly.  For this test will focus on negative tests
+        # make sure an empty file returns an empty list
+        empty = os.path.join('files', 'empty.txt')
+        text = get_file_text(empty)
+        self.assertEqual(text, [])
+
+        # Test an unsupported file raises an exception
+        with self.assertRaises(RuntimeError):
+            get_file_text('unsupported.xyz')
 
     def test_november_statement_pdf(self):
         # get a platform safe path to a test pdf file
