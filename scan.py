@@ -67,8 +67,9 @@ def scan_files() -> list:
     return found_list
 
 
-def show_aggie_pride() -> list:
-    slogan_list = ['Aggie Pride - Worldwide']
+def show_aggie_pride():
+    slogan_list = ['Aggie Pride - Worldwide', 'Aggies Do!', 'Aggie Pride!', 'And That\'s On My 1891',
+                   'Aggies ❤️ engineering', 'Aggies Do!', 'Aggies Get it Done!', 'NCAT']
 
     return slogan_list
 
