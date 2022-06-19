@@ -104,6 +104,31 @@ class ScanTests(unittest.TestCase):
         self.assertIn('James Johnson,919-555-1212', text)
         self.assertIn('Roger Jones,970-555-1212', text)
 
+    def test_sprint2_t0_docx(self):
+        # full path to the sample document
+        no_pii = 'files/Documents/Team0 Documents/sprint2_team0_docx_no_pii.docx'
+
+        # Fix seperator for windows (or other platforms)
+        if os.sep != '/':
+            no_pii = no_pii.replace('/', os.sep)
+
+        # read the text from the file
+        no_pii_text = get_file_text(no_pii)
+        # make sure the content is there
+        self.assertIn('There is no PII in it', no_pii_text)
+
+        # Now check the other file
+        pii = 'files/Documents/Team0 Documents/sprint2_team0_docx_with_pii.docx'
+
+        # Fix seperator for windows (or other platforms)
+        if os.sep != '/':
+            pii = pii.replace('/', os.sep)
+
+        # read the text from the file
+        pii_text = get_file_text(pii)
+        # make sure the content is there
+        self.assertIn('It contains some sample PII', pii_text)
+
 
 if __name__ == '__main__':
     unittest.main()
