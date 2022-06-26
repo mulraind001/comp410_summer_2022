@@ -141,6 +141,31 @@ class ScanTests(unittest.TestCase):
             pii = pii.replace('/', os.sep)
         pii_text = get_file_text(pii)
         self.assertIn('Test document with PII.', pii_text)
+    
+    def test_sprint2_t1_xslx(self):
+        # Full path to the sample document.
+        no_pii = 'files/Documents/Team 1 Documents/Sprint2_Team1_xlsx_no_pii.xlsx'
+
+        # Fix seperator for windows (or other platforms).
+        if os.sep != '/':
+            no_pii = no_pii.replace('/', os.sep)
+
+        # Read the text from the file.
+        no_pii_text = get_file_text(no_pii)
+        # make sure the content is there
+        self.assertIn('There is no PII in it', no_pii_text)
+
+        # Now check the other file.
+        pii = 'files/Documents/Team 1 Documents/Sprint2_Team1_xlsx_with_pii.xlsx'
+
+        # Fix seperator for windows (or other platforms).
+        if os.sep != '/':
+            pii = pii.replace('/', os.sep)
+
+        # read the text from the file
+        pii_text = get_file_text(pii)
+        # make sure the content is there
+        self.assertIn('It contains some sample PII', pii_text)
 
 if __name__ == '__main__':
     unittest.main()
