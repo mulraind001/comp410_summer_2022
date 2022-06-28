@@ -222,7 +222,7 @@ class ScanTests(unittest.TestCase):
         self.assertIn('John Smith', pii_text[0])
 
 
-    def test_sprint2_t4_xlsx(self):
+    def test_sprint2_t4(self):
 
         # To team members:
         # After creating the file types you need to close your issue,
