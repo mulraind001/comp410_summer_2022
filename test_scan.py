@@ -146,7 +146,7 @@ class ScanTests(unittest.TestCase):
         pii_text = get_file_text(pii)
         self.assertIn('Test document with PII.', pii_text)
 
-        def test_sprint2_t2_xlsx(self):
+    def test_sprint2_t2_xlsx(self):
         # Full path to the sample document.
         no_pii = 'files/Documents/Team2 Documents/sprint2_team2_xlsx_no_pii.xlsx'
         # Fix seperator for windows (or other platforms).
