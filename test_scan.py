@@ -224,29 +224,39 @@ class ScanTests(unittest.TestCase):
 
     def test_sprint2_t4_xlsx(self):
 
-        # Full path to the sample document.
-        no_pii = 'files/Documents/Team 4 Documents/sprint2_team4_xlsx_without_pii.xlsx'
+        # To team members:
+        # After creating the file types you need to close your issue,
+        # Name them as 'without_pii_{github_username}.{extension}'
+        # And 'with_pii_{github_username}.{extension}'
+        # Then copy the extension next to your name from the array below into the document types array
+        # document_types = ['_tashanthornton.xlsx', '_niasia.txt', '_nigeltiany.docx', '_antrays.txt', '_terrelxavier.txt']
 
-        # Fix seperator for windows (or other platforms).
-        if os.sep != '/':
-            no_pii = no_pii.replace('/', os.sep)
+        document_types = ['_nigeltiany.docx']
 
-        # Read the text from the file.
-        no_pii_text = get_file_text(no_pii)
-        # make sure the content is there
-        self.assertIn('There is no PII in it', no_pii_text)
+        for document in document_types:
+            # Full path to the sample document.
+            no_pii = 'files/Documents/Team 4 Documents/without_pii' + document
 
-        # Now check the other file.
-        pii = 'files/Documents/Team 4 Documents/sprint2_team4_xlsx_with_pii.xlsx'
+            # Fix seperator for windows (or other platforms).
+            if os.sep != '/':
+                no_pii = no_pii.replace('/', os.sep)
 
-        # Fix seperator for windows (or other platforms).
-        if os.sep != '/':
-            pii = pii.replace('/', os.sep)
+            # Read the text from the file.
+            no_pii_text = get_file_text(no_pii)
+            # make sure the content is there
+            self.assertIn('There is no PII in it', no_pii_text)
 
-        # read the text from the file
-        pii_text = get_file_text(pii)
-        # make sure the content is there
-        self.assertIn('It contains some sample PII', pii_text)
+            # Now check the other file.
+            pii = 'files/Documents/Team 4 Documents/with_pii' + document
+
+            # Fix seperator for windows (or other platforms).
+            if os.sep != '/':
+                pii = pii.replace('/', os.sep)
+
+            # read the text from the file
+            pii_text = get_file_text(pii)
+            # make sure the content is there
+            self.assertIn('It contains some sample PII', pii_text)
 
 
 if __name__ == '__main__':
