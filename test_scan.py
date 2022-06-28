@@ -133,7 +133,7 @@ class ScanTests(unittest.TestCase):
         # make sure the content is there
         self.assertIn('It contains some sample PII', pii_text)
 
-    def test_sprint2_t2_txt(self):
+    def test_sprint2_t4_txt(self):
         no_pii = 'files/Documents/Team 4 Documents/sprint2 test data.txt'
         if os.sep != '/':
             no_pii = no_pii.replace('/', os.sep)
@@ -220,6 +220,36 @@ class ScanTests(unittest.TestCase):
         pii_text = get_file_text(pii)
         # make sure the content is there
         self.assertIn('John Smith', pii_text[0])
+
+  document_types = [''_antrays.txt']
+
+        for document in document_types:
+            # Full path to the sample document.
+            no_pii = 'files/Documents/Team 4 Documents/without_pii_antrays.txt' 
+
+            # Fix seperator for windows (or other platforms).
+            if os.sep != '/':
+                no_pii = no_pii.replace('/', os.sep)
+
+            # Read the text from the file.
+            no_pii_text = get_file_text(no_pii)
+            # make sure the content is there
+            self.assertIn('There is no PII in it', no_pii_text)
+
+            # Now check the other file.
+            pii = 'files/Documents/Team 4 Documents/with_pii_antrays.txt' 
+
+            # Fix seperator for windows (or other platforms).
+            if os.sep != '/':
+                pii = pii.replace('/', os.sep)
+
+            # read the text from the file
+            pii_text = get_file_text(pii)
+            # make sure the content is there
+            self.assertIn('It contains some sample PII', pii_text)
+
+
+
 
 
 if __name__ == '__main__':
