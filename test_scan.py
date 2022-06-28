@@ -10,6 +10,7 @@ class ScanTests(unittest.TestCase):
         slogans = show_aggie_pride()
 
         self.assertIn('Aggie Pride - Worldwide', slogans)
+        self.assertIn('Aggie born aggie bred, when I die Ill be aggie dead', slogans)
 
     def test_scan_files(self):
         # Test to make sure scan_files returns the expected results
