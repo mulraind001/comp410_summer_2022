@@ -133,14 +133,13 @@ class ScanTests(unittest.TestCase):
         # make sure the content is there
         self.assertIn('It contains some sample PII', pii_text)
 
-    def test_sprint2_t4_txt(self):
-        no_pii = 'files/Documents/Team 4 Documents/sprint2 test data.txt'
+      def test_sprint2_t2_txt(self):
+        no_pii = 'files/Documents/Team2 Documents/sprint2_team2_txt_no_pii.txt'
         if os.sep != '/':
             no_pii = no_pii.replace('/', os.sep)
         no_pii_text = get_file_text(no_pii)
         self.assertIn('Test document with no PII.', no_pii_text)
-
-        pii = 'files/Documents/Team 4 Documents/sprint 2 data.txt'
+        pii = 'files/Documents/Team2 Documents/sprint2_team2_txt_with_pii.txt'
         if os.sep != '/':
             pii = pii.replace('/', os.sep)
         pii_text = get_file_text(pii)
