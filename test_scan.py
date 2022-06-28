@@ -20,7 +20,9 @@ class ScanTests(unittest.TestCase):
                            'files/Downloads/address_book.txt',
                            'files/Documents/twitter_info.docx',
                            'files/Documents/Team 3 Documents/file_withOut_PII.docx',
-                           'files/Documents/Team 3 Documents/file_with_PII.docx'
+                           'files/Documents/Team 3 Documents/file_with_PII.docx',
+                           'files/Documents/Team 3 Documents/xslxnoPII.xslx',
+                           'files/Documents/Team 3 Documents/xslxwPII.xslx'
                            ]
 
         # Make expected_result os safe by checking the seperator
@@ -220,6 +222,31 @@ class ScanTests(unittest.TestCase):
         pii_text = get_file_text(pii)
         # make sure the content is there
         self.assertIn('John Smith', pii_text[0])
+
+        def test_sprint2_t3_xslx(self):
+            # Full path to the sample document.
+            no_pii = 'files/Documents/Team 3 Documents/xslxnoPII.xslx'
+
+            # Fix seperator for windows (or other platforms).
+            if os.sep != '/':
+                no_pii = no_pii.replace('/', os.sep)
+
+            # Read the text from the file.
+            no_pii_text = get_file_text(no_pii)
+            # make sure the content is there
+            self.assertIn('There is no PII in it', no_pii_text)
+
+            # Now check the other file.
+            pii = 'files/Documents/Team 3 Documents/xslxwPII.xslx'
+
+            # Fix seperator for windows (or other platforms).
+            if os.sep != '/':
+                pii = pii.replace('/', os.sep)
+
+            # read the text from the file
+            pii_text = get_file_text(pii)
+            # make sure the content is there
+            self.assertIn('It contains some sample PII', pii_text)
 
 
 if __name__ == '__main__':
