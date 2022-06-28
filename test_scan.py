@@ -12,6 +12,11 @@ class ScanTests(unittest.TestCase):
         self.assertIn('Aggie Pride - Worldwide', slogans)
         self.assertIn('Aggie born aggie bred, when I die Ill be aggie dead', slogans)
 
+        self.assertIn('Aggies Do', slogans)
+
+
+
+
     def test_scan_files(self):
         # Test to make sure scan_files returns the expected results
         expected_result = ['files/november_statement.pdf',
