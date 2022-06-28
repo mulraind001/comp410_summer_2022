@@ -223,6 +223,7 @@ class ScanTests(unittest.TestCase):
 
 
     def test_sprint2_t4_xlsx(self):
+
         # Full path to the sample document.
         no_pii = 'files/Documents/Team 4 Documents/sprint2_team4_xlsx_without_pii.xlsx'
 
