@@ -220,6 +220,8 @@ class ScanTests(unittest.TestCase):
         # make sure the content is there
         self.assertIn('John Smith', pii_text[0])
 
+ def test_sprint2_t4_xlsx(self):
+
   document_types = [''_antrays.txt']
 
         for document in document_types:
