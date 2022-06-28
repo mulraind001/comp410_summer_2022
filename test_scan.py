@@ -182,7 +182,7 @@ class ScanTests(unittest.TestCase):
         # read the text from the file
         no_pii_text = get_file_text(no_pii)
         # make sure the content is there
-        self.assertIn('Sed ut perspiciatis unde omnis iste natus error sit voluptatem', no_pii_text)
+        self.assertIn('Sed ut perspiciatis unde omnis iste natus error sit voluptatem', no_pii_text[0])
 
         # Now check the other file
         pii = 'files/Documents/Team 3 Documents/file_with_PII.docx'
@@ -194,7 +194,7 @@ class ScanTests(unittest.TestCase):
         # read the text from the file
         pii_text = get_file_text(pii)
         # make sure the content is there
-        self.assertIn('It contains some sample PII', pii_text)
+        self.assertIn('John Smith', pii_text[0])
 
 if __name__ == '__main__':
     unittest.main()
