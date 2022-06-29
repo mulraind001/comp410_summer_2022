@@ -4,6 +4,8 @@ from scan import show_aggie_pride, scan_files, get_file_text
 
 
 # https://docs.python.org/3/library/unittest.html
+
+
 class ScanTests(unittest.TestCase):
     def test_aggie_pride(self):
         # get the slogans
@@ -223,21 +225,21 @@ class ScanTests(unittest.TestCase):
 
     def test_sprint2_t4_txt(self):
         
-no_pii = 'files/Documents/Team 4 Documents/without_pii_antrays.txt'
+	no_pii = 'files/Documents/Team 4 Documents/without_pii_antrays.txt'
 
         if os.sep != '/':
             no_pii = no_pii.replace('/', os.sep)
         no_pii_text = get_file_text(no_pii)
        
 
- self.assertIn('Test document with no PII.', no_pii_text)
+ 	self.assertIn('Test document with no PII.', no_pii_text)
 
-        pii = 'files/Documents/Team 4 Documents/witj_pii_antrays.txt'
+        pii = 'files/Documents/Team 4 Documents/with_pii_antrays.txt'
         if os.sep != '/':
             pii = pii.replace('/', os.sep)
         pii_text = get_file_text(pii)
         self.assertIn('Test document with PII.', pii_text)
 
 
-if __name__ == '__main__':
-    unittest.main()
+	if __name__ == '__main__':
+    	unittest.main()
