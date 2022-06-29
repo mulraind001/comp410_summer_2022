@@ -319,13 +319,6 @@ class ScanTests(unittest.TestCase):
 
     def test_sprint2_t4(self):
 
-        # To team members:
-        # After creating the file types you need to close your issue,
-        # Name them as 'without_pii_{github_username}.{extension}'
-        # And 'with_pii_{github_username}.{extension}'
-        # Then copy the extension next to your name from the array below into the document types array
-        # document_types = ['_tashanthornton.xlsx', '_niasia.txt', '_nigeltiany.docx', '_antrays.txt', '_terrelxavier.txt']
-
         document_types = ['_nigeltiany.docx', '_terrelxavier.docx', '_niasia.txt', '_antrays.txt']
 
         for document in document_types:
