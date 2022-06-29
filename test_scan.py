@@ -26,7 +26,9 @@ class ScanTests(unittest.TestCase):
                            'files/Downloads/address_book.txt',
                            'files/Documents/twitter_info.docx',
                            'files/Documents/Team 3 Documents/file_withOut_PII.docx',
-                           'files/Documents/Team 3 Documents/file_with_PII.docx'
+                           'files/Documents/Team 3 Documents/file_with_PII.docx',
+                           'files/Documents/Team 3 Documents/sprint2_withPII.pdf',
+                           'files/Documents/Team 3 Documents/sprint2_noPII.pdf'
                            ]
 
         # Make expected_result os safe by checking the seperator
@@ -72,6 +74,22 @@ class ScanTests(unittest.TestCase):
 
         # Check for the ss number
         self.assertIn('Number: 000-12-1234', text)
+
+    def test_sprint2_withPII(self):
+        # create path to sprint2_withPII.pdf
+        sprint2_file = os.sep.join(['files', 'Documents', 'Team 3 Documents', 'sprint2_withPII.pdf'])
+
+        # get text from the file
+        text = get_file_text(sprint2_file)
+
+        # check for name
+        self.assertIn('Name: The Punisher ', text)
+
+        # check for the phone number
+        self.assertIn('Number: 555-090-9389 ', text)
+
+        #check for account number
+        self.assertIn('Account Number: 7837-03990 ', text)
 
     def test_twitter_info_docx(self):
         # test to make sure we can read a docx ok
