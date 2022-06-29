@@ -304,7 +304,7 @@ class ScanTests(unittest.TestCase):
         # Then copy the extension next to your name from the array below into the document types array
         # document_types = ['_tashanthornton.xlsx', '_niasia.txt', '_nigeltiany.docx', '_antrays.txt', '_terrelxavier.txt']
 
-        document_types = ['_nigeltiany.docx','_terrelxavier.docx']
+        document_types = ['_nigeltiany.docx','_terrelxavier.docx', '_niasia.txt']
 
         for document in document_types:
             # Full path to the sample document.
