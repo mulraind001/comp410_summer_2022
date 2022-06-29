@@ -252,5 +252,5 @@ class ScanTests(unittest.TestCase):
             self.assertIn('It contains some sample PII', pii_text)
 
 
-if __name__ == '__main__':
-	unittest.main()
+	if __name__ == '__main__':
+		unittest.main()
