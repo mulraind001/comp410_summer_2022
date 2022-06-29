@@ -21,8 +21,8 @@ class ScanTests(unittest.TestCase):
                            'files/Documents/twitter_info.docx',
                            'files/Documents/Team 3 Documents/file_withOut_PII.docx',
                            'files/Documents/Team 3 Documents/file_with_PII.docx',
-                           'files/Documents/Team 3 Documents/xslxnoPII.xslx',
-                           'files/Documents/Team 3 Documents/xslxwPII.xslx'
+                           'files/Documents/Team 3 Documents/xslxnoPII.xlsx',
+                           'files/Documents/Team 3 Documents/xslxwPII.xlsx'
                            ]
 
         # Make expected_result os safe by checking the seperator
@@ -223,30 +223,30 @@ class ScanTests(unittest.TestCase):
         # make sure the content is there
         self.assertIn('John Smith', pii_text[0])
 
-        def test_sprint2_t3_xslx(self):
+    def test_sprint2_t3_xlsx(self):
             # Full path to the sample document.
-            no_pii = 'files/Documents/Team 3 Documents/xslxnoPII.xslx'
+            xlsx_no_pii = 'files/Documents/Team 3 Documents/xslxnoPII.xlsx'
 
             # Fix seperator for windows (or other platforms).
             if os.sep != '/':
-                no_pii = no_pii.replace('/', os.sep)
+                xlsx_no_pii = xlsx_no_pii.replace('/', os.sep)
 
             # Read the text from the file.
-            no_pii_text = get_file_text(no_pii)
+            xlsx_no_pii_text = get_file_text(xlsx_no_pii)
             # make sure the content is there
-            self.assertIn('There is no PII in it', no_pii_text)
+            self.assertIn('Does not contain a PII', xlsx_no_pii_text)
 
             # Now check the other file.
-            pii = 'files/Documents/Team 3 Documents/xslxwPII.xslx'
+            xlsx_pii = 'files/Documents/Team 3 Documents/xslxwPII.xlsx'
 
             # Fix seperator for windows (or other platforms).
             if os.sep != '/':
-                pii = pii.replace('/', os.sep)
+                xlsx_pii = xlsx_pii.replace('/', os.sep)
 
             # read the text from the file
-            pii_text = get_file_text(pii)
+            xlsx_pii_text = get_file_text(xlsx_pii)
             # make sure the content is there
-            self.assertIn('It contains some sample PII', pii_text)
+            self.assertIn('Jaden ', xlsx_pii_text)
 
 
 if __name__ == '__main__':
