@@ -12,12 +12,6 @@ class ScanTests(unittest.TestCase):
         self.assertIn('Aggies Do', slogans)
 
 
-       
-
-
-
-
-
     def test_scan_files(self):
         # Test to make sure scan_files returns the expected results
         expected_result = ['files/november_statement.pdf',
@@ -330,45 +324,24 @@ class ScanTests(unittest.TestCase):
         document_types = ['_nigeltiany.docx','_terrelxavier.docx', '_niasia.txt','_antrays.txt']
 
   
-
-        for document in document_types:
+  for document in document_types:
             # Full path to the sample document.
             no_pii = 'files/Documents/Team 4 Documents/without_pii' + document
-
             # Fix seperator for windows (or other platforms).
             if os.sep != '/':
                 no_pii = no_pii.replace('/', os.sep)
-
-
-            # Fix seperator for windows (or other platforms).
-            if os.sep != '/':
-                no_pii = no_pii.replace('/', os.sep)
-
-
             # Read the text from the file.
             no_pii_text = get_file_text(no_pii)
             # make sure the content is there
             self.assertIn('There is no PII in it', no_pii_text)
-
             # Now check the other file.
             pii = 'files/Documents/Team 4 Documents/with_pii' + document
             # Fix seperator for windows (or other platforms).
             if os.sep != '/':
                 pii = pii.replace('/', os.sep)
-
-
-            # Now check the other file.
-            pii = 'files/Documents/Team 4 Documents/with_pii' + document
-
-            # Fix seperator for windows (or other platforms).
-            if os.sep != '/':
-                pii = pii.replace('/', os.sep)
-
-
             # read the text from the file
             pii_text = get_file_text(pii)
             # make sure the content is there
             self.assertIn('It contains some sample PII', pii_text)
-
 if __name__ == '__main__':
     unittest.main()
