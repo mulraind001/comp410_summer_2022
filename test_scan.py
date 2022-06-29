@@ -317,6 +317,7 @@ class ScanTests(unittest.TestCase):
         # make sure the content is there
         self.assertIn('It contains some sample PII', pii_text)
 
+
     def test_sprint2_t4(self):
 
         document_types = ['_nigeltiany.docx', '_terrelxavier.docx', '_niasia.txt', '_antrays.txt']
