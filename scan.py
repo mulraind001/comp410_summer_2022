@@ -11,7 +11,7 @@ supported_files = ['.docx', '.pdf', '.xlsx', '.txt']
 # Return an empty list if no text is found
 def get_file_text(file) -> list:
     # List object to return any text found
-    file_text = []
+    file_text -> list
 
     # split filename into name and extension
     name, ext = os.path.splitext(file)
