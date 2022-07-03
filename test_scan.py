@@ -217,6 +217,26 @@ class ScanTests(unittest.TestCase):
         # make sure the content is there
         self.assertIn('It contains some sample PII', pii_text)
 
+    def test_sprint2_t4_xlsx(self):
+        # Full path to the xlsx file with no PII in it
+        no_pii = 'files/Documents/Team 4 Documents/sprint2_team4_xlsx_no_pii.xlsx'
+        # Fix seperator for windows (or other platforms).
+        if os.sep != '/':
+            no_pii = no_pii.replace('/', os.sep)
+
+        # read the text from the file
+        no_pii_text = get_file_text(no_pii)
+        self.assertEqual(['Test Document with no PII'], no_pii_text)
+
+        # Full path to the xlsx file that has PII
+        pii = 'files/Documents/Team 4 Documents/sprint2_team4_xlsx_with_pii.xlsx'
+        # Fix seperator for windows (or other platforms).
+        if os.sep != '/':
+            pii = no_pii.replace('/', os.sep)
+
+        pii_text = get_file_text(pii)
+        self.assertIn('Test Document with PII', pii_text)
+
     def test_t1_sprint2_docx(self):
         # Full path to the sample document.
         docx_no_pii = 'files/Documents/Team 1 Documents/Sprint2_t1_docx_no_pii.docx'
