@@ -10,12 +10,8 @@ supported_files = ['.docx', '.pdf', '.xlsx', '.txt']
 # Returns all the text in a file as a list
 # Return an empty list if no text is found
 def get_file_text(file) -> list:
-    """
-
-    :rtype: object
-    """
     # List object to return any text found
-    file_text -> list
+    file_text = [list]
 
     # split filename into name and extension
     name, ext = os.path.splitext(file)
