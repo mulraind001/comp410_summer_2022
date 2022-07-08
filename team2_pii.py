@@ -9,3 +9,9 @@ def find_us_phone_numbers(text):
     if match:
         return True
     return False
+
+def find_us_ssn(text):
+    match = re.search(r'([0-9]{2}[1-9]|[0-9][1-9][0-9]|[1-9][0-9]{2})[-\s]([0-9][1-9]|[1-9][0-9])[-\s]([0-9]{3}[1-9]|[0-9]{2}[1-9][0-9]|[0-9][1-9][0-9]{2}|[1-9][0-9]{3})', text)
+    if match:
+        return True
+    return False
