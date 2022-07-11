@@ -15,3 +15,15 @@ def find_us_street_address(text):
     if match:
         return True
     return False
+
+def find_credit_card_number(text):
+    match = re.search(r'b(?:d[ -]*?){13,16}b', text)
+    if match:
+        return True
+    return False
+
+def find_twitter_handle(text):
+    match = re.search(r'/^[a-zA-Z0-9_]{1,15}$/', text)
+    if match:
+        return True
+    return False

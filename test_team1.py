@@ -1,5 +1,5 @@
 import unittest
-from team1_pii import find_us_phone_numbers, find_us_street_address
+from team1_pii import find_us_phone_numbers, find_us_street_address, find_twitter_handle, find_credit_card_number
 
 
 class Team1TestCases(unittest.TestCase):
@@ -26,6 +26,43 @@ class Team1TestCases(unittest.TestCase):
         # Test invalid
         streetAddress = 'My street address is 1234 Invalid Input Drive, Los Angeles, CA, 271'
         self.assertFalse(find_us_street_address(streetAddress))
+
+    def test_credit_card_number(self):
+        # Test Valid
+        cardNum = '1234 5678 9012 3456'
+        self.assertFalse(find_credit_card_number(cardNum))
+
+        cardNum = '1234 5678 3495 3456'
+        self.assertFalse(find_credit_card_number(cardNum))
+
+        cardNum = '6543 5678 9012 3456'
+        self.assertFalse(find_credit_card_number(cardNum))
+
+        #Test invalid
+        cardNum = '123B4 5678 9012 3456'
+        self.assertFalse(find_credit_card_number(cardNum))
+
+        cardNum = '1234 5678 9012'
+        self.assertFalse(find_credit_card_number(cardNum))
+
+    def test_twiter_handle(self):
+        # Test valid
+        userName = '@MHAOfficial'
+        self.assertFalse(find_twitter_handle(userName))
+
+        userName = '@sza'
+        self.assertFalse(find_twitter_handle(userName))
+
+        userName = '@netflix'
+        self.assertFalse(find_twitter_handle(userName))
+
+        #Test Invalid
+
+        userName = 'Bit@coin'
+        self.assertFalse(find_twitter_handle(userName))
+
+        userName = 'powerade'
+        self.assertFalse(find_twitter_handle(userName))
 
 
 if __name__ == '__main__':
