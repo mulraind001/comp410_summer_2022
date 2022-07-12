@@ -30,13 +30,13 @@ class Team1TestCases(unittest.TestCase):
     def test_credit_card_number(self):
         # Test Valid
         cardNum = '1234 5678 9012 3456'
-        self.assertFalse(find_credit_card_number(cardNum))
+        self.assertTrue(find_credit_card_number(cardNum))
 
         cardNum = '1234 5678 3495 3456'
-        self.assertFalse(find_credit_card_number(cardNum))
+        self.assertTrue(find_credit_card_number(cardNum))
 
         cardNum = '6543 5678 9012 3456'
-        self.assertFalse(find_credit_card_number(cardNum))
+        self.assertTrue(find_credit_card_number(cardNum))
 
         #Test invalid
         cardNum = '123B4 5678 9012 3456'
@@ -48,17 +48,17 @@ class Team1TestCases(unittest.TestCase):
     def test_twiter_handle(self):
         # Test valid
         userName = '@MHAOfficial'
-        self.assertFalse(find_twitter_handle(userName))
+        self.assertTrue(find_twitter_handle(userName))
 
         userName = '@sza'
-        self.assertFalse(find_twitter_handle(userName))
+        self.assertTrue(find_twitter_handle(userName))
 
         userName = '@netflix'
-        self.assertFalse(find_twitter_handle(userName))
+        self.assertTrue(find_twitter_handle(userName))
 
         #Test Invalid
 
-        userName = 'Bit@coin'
+        userName = 'my email is jon@smith.com'
         self.assertFalse(find_twitter_handle(userName))
 
         userName = 'powerade'
