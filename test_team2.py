@@ -1,6 +1,7 @@
 import unittest
 from team2_pii import find_us_phone_numbers
 from team2_pii import find_us_ssn
+from team2_pii import find_credit_card_number
 
 
 class Team2TestCases(unittest.TestCase):
@@ -30,6 +31,21 @@ class Team2TestCases(unittest.TestCase):
 
         ssn = 'SSN: 123-456-7890'
         self.assertFalse(find_us_ssn(ssn))
+    
+    def test_credit_card_number(self):
+        # Test valid credit card number
+        ccn = '4444 4444 4444 4444' # Visa, Mastercard, Discover
+        self.assertTrue(find_credit_card_number(ccn))
+
+        ccn = '3333 333333 33333' # American Express
+        self.assertTrue(find_credit_card_number(ccn))
+
+        # Test invalid credit card number
+        ccn = '1234'
+        self.assertFalse(find_credit_card_number(ccn))
+
+        ccn = 'hello'
+        self.assertFalse(find_credit_card_number(ccn))
 
 
 
