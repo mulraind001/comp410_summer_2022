@@ -40,6 +40,9 @@ class Team2TestCases(unittest.TestCase):
         ccn = '3333 333333 33333' # American Express
         self.assertTrue(find_credit_card_number(ccn))
 
+        ccn = '5555-5555-5555-5555'
+        self.assertTrue(find_credit_card_number(ccn))
+
         # Test invalid credit card number
         ccn = '1234'
         self.assertFalse(find_credit_card_number(ccn))
