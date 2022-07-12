@@ -9,3 +9,10 @@ def find_us_phone_numbers(text):
     if match:
         return True
     return False
+
+
+def find_twitter_usernames(text):
+    match = re.search(r'\B@\w*([A-Za-z0-9_]+)\w*', text)
+    if match:
+        return True
+    return False
