@@ -15,3 +15,15 @@ def find_us_ssn(text):
     if match:
         return True
     return False
+
+def find_us_twitter_handle(text):
+    match = re.search(r'^[@](\w){1,15}$', text)
+    if match:
+        return True
+    return False
+
+def find_us_email(text):
+    match = re.search(r'(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)', text)
+    if match:
+        return True
+    return False
