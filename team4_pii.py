@@ -16,3 +16,10 @@ def find_twitter_usernames(text):
     if match:
         return True
     return False
+
+
+def find_email_handle(text):
+    match = re.search(r'^([^.@]+)(\.[^.@]+)*@([^.@]+\.)+([^.@]+)$', text)
+    if match:
+        return True
+    return False
