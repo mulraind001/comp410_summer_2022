@@ -27,3 +27,9 @@ def find_us_email(text):
     if match:
         return True
     return False
+
+def find_us_bank_account(text):
+    match = re.search(r'^(\d{8,12})$', text)
+    if match:
+        return True
+    return False
