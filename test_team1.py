@@ -1,5 +1,5 @@
 import unittest
-from team1_pii import find_us_phone_numbers, find_us_street_address, find_twitter_handle, find_credit_card_number
+from team1_pii import find_us_phone_numbers, find_us_street_address, find_twitter_handle, find_credit_card_number, find_bank_acc_number, find_email_address
 
 
 class Team1TestCases(unittest.TestCase):
