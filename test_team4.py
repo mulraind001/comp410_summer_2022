@@ -1,5 +1,5 @@
 import unittest
-from team4_pii import find_us_phone_numbers, find_twitter_usernames, find_email_handle
+from team4_pii import find_us_phone_numbers, find_twitter_usernames, find_email_handle, find_credit_card_numbers
 
 
 class Team4TestCases(unittest.TestCase):
@@ -33,23 +33,26 @@ class Team4TestCases(unittest.TestCase):
         twitterHandle = 'google@'
         self.assertFalse(find_twitter_usernames(twitterHandle))
 
-    def test_email_address(self):
-        # valid email
-        valid_email_1 = 'mail@gmail.com'
-        self.assertTrue(find_email_handle(valid_email_1))
+    def test_credit_card_numbers(self):
+        # Test Valid Cards
+        visa_mastercard_valid = '4012 8888 8888 1881'
+        self.assertTrue(find_credit_card_numbers(visa_mastercard_valid))
 
-        # valid email
-        valid_email_2 = 'mail @ apple . com'
-        self.assertTrue(find_email_handle(valid_email_2))
+        amex_valid = '3782 822463 10005'
+        self.assertTrue(find_credit_card_numbers(amex_valid))
 
-        # invalid email
-        in_valid_email_1 = 'mail@apple.'
-        self.assertFalse(find_email_handle(in_valid_email_1))
+        diners_valid = '3782 822463 0005'
+        self.assertTrue(find_credit_card_numbers(diners_valid))
 
-        # invalid email
-        in_valid_email_2 = '@apple-com'
-        self.assertFalse(find_email_handle(in_valid_email_2))
+        # Test Invalid Cards
+        visa_mastercard_invalid = '4111 1111 1111 111'
+        self.assertFalse(find_credit_card_numbers(visa_mastercard_invalid))
 
+        amex_invalid = '3782 82243 10005'
+        self.assertFalse(find_credit_card_numbers(amex_invalid))
+
+        diners_invalid = '3782 82463 0005'
+        self.assertFalse(find_credit_card_numbers(diners_invalid))
 
 
 if __name__ == '__main__':
