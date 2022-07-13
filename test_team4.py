@@ -1,5 +1,5 @@
 import unittest
-from team4_pii import find_us_phone_numbers, find_twitter_usernames, find_email_handle, find_credit_card_numbers
+from team4_pii import find_us_phone_numbers, find_twitter_usernames, find_email_handle, find_credit_card_numbers, find_account_number
 
 
 class Team4TestCases(unittest.TestCase):
@@ -71,6 +71,24 @@ class Team4TestCases(unittest.TestCase):
         invalid_email_2 = '@apple.com'
         self.assertFalse(find_email_handle(invalid_email_2))
         
+
+    def test_account_number(self):
+        # Test valid account numbers
+        accountnumber = '1235489652'
+        self.assertTrue(find_account_number(accountnumber))
+
+        accountnumber = '52489'
+        self.assertTrue(find_account_number(accountnumber))
+
+        accountnumber = '954129'
+        self.assertTrue(find_account_number(accountnumber))
+
+        # Test invalid accountnumbers
+        accountnumber = '12'
+        self.assertFalse(find_account_number(accountnumber))
+
+        accountnumber = '0002547893124d'
+        self.assertFalse(find_account_number(accountnumber))
 
 
 if __name__ == '__main__':
