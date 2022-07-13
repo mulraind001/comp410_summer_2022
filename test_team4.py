@@ -55,5 +55,24 @@ class Team4TestCases(unittest.TestCase):
         self.assertFalse(find_credit_card_numbers(diners_invalid))
 
 
+         def test_account_number(self):
+            # Test valid account numbers
+            accountnumber = '1235489652'
+            self.assertTrue(find_account_number(accountnumber))
+
+            accountnumber = '52489'
+            self.assertTrue(find_account_number(accountnumber))
+
+            accountnumber = '954129'
+            self.assertTrue(find_account_number(accountnumber))
+
+            # Test invalid accountnumbers
+            accountnumber = '12'
+            self.assertFalse(find_account_number(accountnumber))
+
+            accountnumber = '0002547893124d'
+            self.assertFalse(find_account_number(accountnumber))
+
+
 if __name__ == '__main__':
     unittest.main()
