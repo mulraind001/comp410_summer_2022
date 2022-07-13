@@ -3,6 +3,8 @@ from team2_pii import find_us_phone_numbers
 from team2_pii import find_us_ssn
 from team2_pii import find_us_email
 from team2_pii import find_us_twitter_handle
+from team2_pii import find_us_bank_account
+
 
 class Team2TestCases(unittest.TestCase):
     def test_us_phone(self):
@@ -54,6 +56,23 @@ class Team2TestCases(unittest.TestCase):
 
         twt = "@17ds17__"
         self.assertTrue(find_us_twitter_handle(twt))
+
+    def test_us_bank_account(self):
+        # test bank account numbers. 8-12 digits long
+
+        # valid numbers
+        bank = '20392837'
+        self.assertTrue(find_us_bank_account(bank))
+
+        bank = '390948738903'
+        self.assertTrue(find_us_bank_account(bank))
+
+        # invalid accounts
+        bank = '3452'
+        self.assertFalse(find_us_bank_account(bank))
+
+        bank = '345cn4nj3'
+        self.assertFalse(find_us_bank_account(bank))
 
 if __name__ == '__main__':
     unittest.main()
