@@ -35,8 +35,7 @@ def find_credit_card_numbers(text):
         return True
     return False
 
-
-    def find_account_number(text):
+def find_account_number(text):
     match = re.search(r'^(\d{3,12})$', text)
 
     if match:
