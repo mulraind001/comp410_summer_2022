@@ -65,7 +65,7 @@ class Team1TestCases(unittest.TestCase):
         self.assertFalse(find_twitter_handle(userName))
 
     def test_bank_acc_number(self):
-        # Test valid bank account number
+        # Test valid bank account numbers
         acc = '0123456789'
         self.assertTrue(find_bank_acc_number(acc))
 
