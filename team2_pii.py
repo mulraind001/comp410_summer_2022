@@ -16,6 +16,11 @@ def find_us_ssn(text):
         return True
     return False
 
+def find_credit_card_number(text):
+    match = re.search(r'([0-9]{4}[- ][0-9]{4,6}[- ][0-9]{4,5}[- ]?[0-9]{0,4})', text)
+    if match:
+        return True
+    return False
 def find_us_twitter_handle(text):
     match = re.search(r'^[@](\w){1,15}$', text)
     if match:
@@ -30,6 +35,12 @@ def find_us_email(text):
 
 def find_us_bank_account(text):
     match = re.search(r'^(\d{8,12})$', text)
+    if match:
+        return True
+    return False
+
+def find_us_address(text):
+    match = re.search(r'(\d{1,5}\s{1}[\w\s]*,\s{1}[\w\s-]*,\s{1}[A-Z]{2},\s{1}(\d{5}-\d{4}|\d{5}))', text)
     if match:
         return True
     return False
