@@ -53,6 +53,24 @@ class Team4TestCases(unittest.TestCase):
 
         diners_invalid = '3782 82463 0005'
         self.assertFalse(find_credit_card_numbers(diners_invalid))
+        
+    def test_email_address(self):
+        # valid email
+        valid_email_1 = 'mail@gmail.com'
+        self.assertTrue(find_email_handle(valid_email_1))
+        
+        # valid email
+        valid_email_2 = 'mail @ apple . com'
+        self.assertTrue(find_email_handle(valid_email_2))
+        
+        # invalid email
+        invalid_email_1 = 'mail@apple.'
+        self.assertFalse(find_email_handle(invalid_email_1))
+        
+        # invalid email
+        invalid_email_2 = '@apple.com'
+        self.assertFalse(find_email_handle(invalid_email_2))
+        
 
 
 if __name__ == '__main__':
