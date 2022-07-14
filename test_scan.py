@@ -232,7 +232,7 @@ class ScanTests(unittest.TestCase):
         pii = 'files/Documents/Team 4 Documents/sprint2_team4_xlsx_with_pii.xlsx'
         # Fix seperator for windows (or other platforms).
         if os.sep != '/':
-            pii = no_pii.replace('/', os.sep)
+            pii = pii.replace('/', os.sep)
 
         pii_text = get_file_text(pii)
         self.assertIn('Test Document with PII', pii_text)
