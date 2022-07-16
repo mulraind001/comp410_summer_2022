@@ -112,9 +112,9 @@ class ScanTests(unittest.TestCase):
         text = get_file_text(xlsx)
 
         # check to make sure we found all the phone numbers
-        self.assertIn('336-555-1212', text)
-        self.assertIn('919-555-1212', text)
-        self.assertIn('970-555-1212', text)
+        self.assertIn('336-555-1212', str(text))
+        self.assertIn('919-555-1212', str(text))
+        self.assertIn('970-555-1212', str(text))
 
     def test_address_book_txt(self):
         txt = 'files/Downloads/address_book.txt'
@@ -310,7 +310,7 @@ class ScanTests(unittest.TestCase):
         # read the text from the file
         xlsx_pii_text = get_file_text(xlsx_pii)
         # make sure the content is there
-        self.assertIn('Jaden ', xlsx_pii_text)
+        self.assertIn('Jaden', str(xlsx_pii_text))
 
     def test_sprint2_t2_docx(self):
         # full path to the sample document
