@@ -11,6 +11,9 @@ class Team1TestCases(unittest.TestCase):
         phone = '336.555.1212'
         self.assertTrue(find_us_phone_numbers(phone))
 
+        phone = '(336) 555-1212'
+        self.assertTrue(find_us_phone_numbers(phone))
+
         # Test invalid
         phone = 'My number is 336-42-1212'
         self.assertFalse(find_us_phone_numbers(phone))
@@ -24,7 +27,7 @@ class Team1TestCases(unittest.TestCase):
         self.assertTrue(find_us_street_address(streetAddress))
 
         # Test invalid
-        streetAddress = 'My street address is 1234 Invalid Input Drive, Los Angeles, CA, 271'
+        streetAddress = 'My street address is 12 Invalid Input Drive'
         self.assertFalse(find_us_street_address(streetAddress))
 
     def test_credit_card_number(self):
