@@ -1,5 +1,5 @@
 import unittest
-from team1_pii import find_us_phone_numbers, find_us_street_address, find_twitter_handle, find_credit_card_number, find_bank_acc_number, find_email_address
+from team1_pii import find_us_social_security, find_us_phone_numbers, find_us_street_address, find_twitter_handle, find_credit_card_number, find_bank_acc_number, find_email_address
 
 
 class Team1TestCases(unittest.TestCase):
@@ -90,6 +90,21 @@ class Team1TestCases(unittest.TestCase):
         # Invalid Test
         email = '..nc12@email.com'
         self.assertFalse(find_email_address(email))
+
+    def test_social_security(self):
+        # Test valid email address
+        ssn = '009-00-0000'
+        self.assertTrue(find_us_social_security(ssn))
+
+        ssn = 'This is a SSN: 123-12-1234'
+        self.assertTrue(find_us_social_security(ssn))
+
+        ssn = '111-00-3401'
+        self.assertTrue(find_us_social_security(ssn))
+
+        # Invalid Test
+        ssn = '09-09-0909'
+        self.assertFalse(find_us_social_security(ssn))
 
 
 if __name__ == '__main__':

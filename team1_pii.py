@@ -42,8 +42,8 @@ def find_email_address(text):
         return True
     return False
 
-# def find_us_social_secruity(text):
-#     match = re.search(r'', text)
-#     if match:
-#         return True
-#     return False
+def find_us_social_security(text):
+    match = re.search(r'(\d{3}[-]\d{2}[-]\d{4})', text)
+    if match:
+        return True
+    return False
