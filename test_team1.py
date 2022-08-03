@@ -89,7 +89,7 @@ class Team1TestCases(unittest.TestCase):
         self.assertTrue(find_email_address(email))
 
         # Invalid Test
-        email = '..nc12@email.com'
+        email = '@twitter'
         self.assertFalse(find_email_address(email))
 
     def test_social_security(self):

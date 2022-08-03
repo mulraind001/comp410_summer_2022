@@ -59,7 +59,7 @@ def find_us_social_security(text):
 
 def find_personal_names(text):
     exclude_list = ['Full', 'Name', 'Banking', 'Statement', 'Account', 'Number', 'Last', 'Social', 'Security', 'Test',
-                    'Document', 'Phone', 'Card', 'Credit', 'Terrace', 'Lane']
+                    'Document', 'Phone', 'Card', 'Credit', 'Terrace', 'Lane', 'FitnessGram']
     pii_list = []
     # find all the regex matches in text
     for match in re.findall(r'[A-Z][A-Za-z]+\s+[A-Z][A-Za-z]+', text):
