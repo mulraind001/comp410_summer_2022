@@ -31,7 +31,7 @@ def find_pii(text):
         detected_pii_list.append('US_SSN')
 
     if find_personal_names(text):
-        detected_pii_list.append('Personal_Names')
+        detected_pii_list.append('Personal_Name')
 
     return detected_pii_list
 

@@ -44,7 +44,7 @@ def find_bank_acc_number(text):
 
 
 def find_email_address(text):
-    match = re.search(r'^[^.][a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$',, text)
+    match = re.search(r'[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$', text)
     if match:
         return True
     return False
@@ -56,8 +56,10 @@ def find_us_social_security(text):
         return True
     return False
 
+
 def find_personal_names(text):
-    exclude_list = ['Full', 'Name', 'Banking', 'Statement', 'Account', 'Number', 'Last', 'Social', 'Security', 'Test', 'Document', 'Phone', 'Card', 'Credit', 'Terrace', 'Lane']
+    exclude_list = ['Full', 'Name', 'Banking', 'Statement', 'Account', 'Number', 'Last', 'Social', 'Security', 'Test',
+                    'Document', 'Phone', 'Card', 'Credit', 'Terrace', 'Lane']
     pii_list = []
     # find all the regex matches in text
     for match in re.findall(r'[A-Z][A-Za-z]+\s+[A-Z][A-Za-z]+', text):
