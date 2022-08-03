@@ -2,7 +2,7 @@
 # NO_PII: files/november_statement.pdf: MyBank.com - Banking Statement
 from scan import get_file_text, scan_files
 from team1_pii import find_us_phone_numbers, find_us_street_address, find_twitter_handle, find_credit_card_number, \
-    find_bank_acc_number, find_email_address, find_us_social_security
+    find_bank_acc_number, find_email_address, find_us_social_security, find_personal_names
 
 
 
@@ -29,6 +29,9 @@ def find_pii(text):
 
     if find_us_social_security(text):
         detected_pii_list.append('US_SSN')
+
+    if find_personal_names(text):
+        detected_pii_list.append('Personal_Names')
 
     return detected_pii_list
 

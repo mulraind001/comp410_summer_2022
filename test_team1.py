@@ -1,5 +1,5 @@
 import unittest
-from team1_pii import find_us_social_security, find_us_phone_numbers, find_us_street_address, find_twitter_handle, find_credit_card_number, find_bank_acc_number, find_email_address
+from team1_pii import find_us_social_security, find_us_phone_numbers, find_us_street_address, find_twitter_handle, find_credit_card_number, find_bank_acc_number, find_email_address, find_personal_names
 
 
 class Team1TestCases(unittest.TestCase):
@@ -109,6 +109,16 @@ class Team1TestCases(unittest.TestCase):
         ssn = '000-09-0909'
         self.assertFalse(find_us_social_security(ssn))
 
+    def test_personal_names(self):
+        # Test valid Name
+        name = 'Kaylin Burgess'
+        self.assertTrue(find_personal_names(name))
 
+        name = 'Name: John Smith'
+        self.assertTrue(find_personal_names(name))
+
+        # Test invalid names
+        name = "Banking Statement"
+        self.assertFalse(find_personal_names(name))
 if __name__ == '__main__':
     unittest.main()

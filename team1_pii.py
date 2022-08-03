@@ -55,3 +55,14 @@ def find_us_social_security(text):
     if match:
         return True
     return False
+
+def find_personal_names(text):
+    exclude_list = ['Full', 'Name', 'Banking', 'Statement', 'Account', 'Number:', 'Last', 'Social', 'Security', 'Test', 'Document',]
+    pii_list = []
+    # find all the regex matches in text
+    for match in re.findall(r'[A-Z][A-Za-z]+\s+[A-Z][A-Za-z]+', text):
+        # if nothing from exclude_list is in this match then it is pii
+        if not any(e in match for e in exclude_list):
+            pii_list.append(match)
+            return True
+    return False
