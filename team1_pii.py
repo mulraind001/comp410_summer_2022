@@ -44,7 +44,7 @@ def find_bank_acc_number(text):
 
 
 def find_email_address(text):
-    match = re.search(r'^(\w)(.)+@[(.com|.net|.org|.ca|hotmail)]', text)
+    match = re.search(r'^[^.][a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$',, text)
     if match:
         return True
     return False
