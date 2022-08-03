@@ -37,14 +37,14 @@ def find_twitter_handle(text):
 
 
 def find_bank_acc_number(text):
-    match = re.search(r'^[\d-]+$', text)
+    match = re.search(r'^(?:\d{3,4}\-\d{5}|\d{10}|\d{12})', text)
     if match:
         return True
     return False
 
 
 def find_email_address(text):
-    match = re.search(r'^(\w)', text)
+    match = re.search(r'^(\w)(.)+@[a-z]', text)
     if match:
         return True
     return False
